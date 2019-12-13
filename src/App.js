@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import CreateArtPage from "./components/pages/CreateArtPage";
 
 import "./App.css";
+import "./styles/style.scss";
 
 const theme = createMuiTheme({
   palette: {
@@ -32,7 +33,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Grid container justify={"center"} alignItems={"center"}>
+        <Grid container justify={"center"}>
           <Grid item xs={6}>
             <CreateArtPage />
           </Grid>
