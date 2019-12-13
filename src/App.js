@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 
 import CreateArtPage from "./components/pages/CreateArtPage";
 
-import "./App.css";
 import "./styles/style.scss";
 
 const theme = createMuiTheme({
