@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CreateArtForm = () => {
+const AddArtworkForm = () => {
   const classes = useStyles();
 
   return (
@@ -80,4 +80,4 @@ const CreateArtForm = () => {
   );
 };
 
-export default CreateArtForm;
+export default AddArtworkForm;

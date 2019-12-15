@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
-import CreateArtPage from "./components/pages/CreateArtPage";
+import GalleryPage from "./components/pages/GalleryPage";
 
 import "./styles/style.scss";
 
@@ -34,7 +34,7 @@ function App() {
       <Container>
         <Grid container justify={"center"}>
           <Grid item xs={6}>
-            <CreateArtPage />
+            <GalleryPage />
           </Grid>
         </Grid>
       </Container>
