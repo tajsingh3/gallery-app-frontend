@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import Typography from "@material-ui/core/Typography";
@@ -8,8 +8,9 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-
 import "typeface-roboto";
+
+import FileDrop from "../components/FileDrop";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +29,7 @@ const AddArtworkForm = () => {
         description: Yup.string()
           .max(50)
           .required(),
-        artworkImage: Yup.mixed().required("Artwork Image file required")
+        artworkImage: Yup.mixed().required("artwork image is a required field")
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -37,7 +38,7 @@ const AddArtworkForm = () => {
         }, 400);
       }}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, handleChange, values }) => (
         <>
           <Typography variant="h4" gutterBottom>
             Add Artwork
@@ -61,10 +62,7 @@ const AddArtworkForm = () => {
                 fullWidth
               />
               <ImageIcon />
-              <Field name="artworkImage" type="file" onBlur={null} />
-              <Typography variant="caption" display="block" color="error">
-                <ErrorMessage name="artworkImage" />
-              </Typography>
+              <FileDrop handleChange={handleChange} values={values} />
               <Button
                 variant="outlined"
                 color="primary"

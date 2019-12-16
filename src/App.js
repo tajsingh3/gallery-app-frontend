@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/styles";
 
 import AddArtworkPage from "./components/pages/AddArtworkPage";
 import Layout from "./components/components/Layout";
-// import GalleryPage from "./components/pages/GalleryPage";
+import GalleryPage from "./components/pages/GalleryPage";
 
 import "./styles/style.scss";
 
@@ -33,7 +33,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Layout>
         <AddArtworkPage />
-        {/* <GalleryPage /> */}
+        <GalleryPage />
       </Layout>
     </ThemeProvider>
   );

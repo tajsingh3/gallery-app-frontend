@@ -43,7 +43,7 @@ const ArtworkCard = ({ imageName }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton>
+        <IconButton onClick={() => console.log("sending thumbs up")}>
           <ThumbUpIcon /> 250
         </IconButton>
         <IconButton>
