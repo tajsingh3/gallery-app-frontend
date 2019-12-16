@@ -1,10 +1,10 @@
 import React from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 
-import GalleryPage from "./components/pages/GalleryPage";
+import AddArtworkPage from "./components/pages/AddArtworkPage";
+import Layout from "./components/components/Layout";
+// import GalleryPage from "./components/pages/GalleryPage";
 
 import "./styles/style.scss";
 
@@ -31,13 +31,10 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <Grid container justify={"center"}>
-          <Grid item xs={6}>
-            <GalleryPage />
-          </Grid>
-        </Grid>
-      </Container>
+      <Layout>
+        <AddArtworkPage />
+        {/* <GalleryPage /> */}
+      </Layout>
     </ThemeProvider>
   );
 }
