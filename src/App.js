@@ -2,9 +2,13 @@ import React from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
-import AddArtworkPage from "./components/pages/AddArtworkPage";
+// import AddArtworkPage from "./components/pages/AddArtworkPage";
 import Layout from "./components/components/Layout";
-import GalleryPage from "./components/pages/GalleryPage";
+// import GalleryPage from "./components/pages/GalleryPage";
+// import CommunityArtPage from "./components/pages/CommunityArtPage";
+// import MyArtPage from "./components/pages/MyArtPage";
+// import AddArtworkForm from "./components/components/AddArtworkForm";
+import EditArtworkPage from "./components/pages/EditArtworkPage";
 
 import "./styles/style.scss";
 
@@ -32,8 +36,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <AddArtworkPage />
-        <GalleryPage />
+        {/* <CommunityArtPage /> */}
+        {/* <MyArtPage /> */}
+        <EditArtworkPage />
       </Layout>
     </ThemeProvider>
   );

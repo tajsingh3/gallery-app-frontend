@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import ArtworkCard from "../components/ArtworkCard";
+import ArtworkCard from "./ArtworkCard";
 
-const GalleryPage = () => {
+const InfiniteGalleryScroll = ({ fetchImages }) => {
   let [images, setImages] = useState(Array.from({ length: 20 }));
 
   const fetchMoreData = () => {
+    fetchImages(); //need to use promises here eventually or asyn await
     setTimeout(() => {
       setImages(prevImages => prevImages.concat(Array.from({ length: 20 })));
     }, 1500);
@@ -26,4 +27,4 @@ const GalleryPage = () => {
   );
 };
 
-export default GalleryPage;
+export default InfiniteGalleryScroll;

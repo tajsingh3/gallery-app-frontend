@@ -72,19 +72,19 @@ const Layout = ({ children }) => {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Community Art"} />
+                <ListItemText primary={"Community art"} />
               </ListItem>
               <ListItem button key={"myart"}>
                 <ListItemIcon>
                   <PhotoLibraryIcon />
                 </ListItemIcon>
-                <ListItemText primary={"My Art"} />
+                <ListItemText primary={"My art"} />
               </ListItem>
               <ListItem button key={"addpic"}>
                 <ListItemIcon>
                   <AddAPhotoIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Add Artwork"} />
+                <ListItemText primary={"Add artwork"} />
               </ListItem>
             </>
           }

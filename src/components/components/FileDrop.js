@@ -51,7 +51,7 @@ const FileDrop = ({ handleChange }) => {
     [isDragActive, isDragAccept, isDragReject]
   );
 
-  const files = acceptedFiles.map(file => (
+  const file = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
     </li>
@@ -74,8 +74,8 @@ const FileDrop = ({ handleChange }) => {
         <ErrorMessage name="artworkImage" />
       </Typography>
       <aside>
-        <h4>Files</h4>
-        <ul>{files}</ul>
+        <h4>File</h4>
+        <ul>{file}</ul>
       </aside>
     </section>
   );

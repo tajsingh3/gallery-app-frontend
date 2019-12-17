@@ -10,14 +10,14 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import "typeface-roboto";
 
-import AddArtworkForm from "../components/AddArtworkForm";
+import EditArtworkForm from "../components/EditArtworkForm";
 
-const AddArtworkPage = () => (
+const EditArtworkPage = () => (
   <Grid container justify={"center"}>
     <Grid item xs={8}>
-      <AddArtworkForm />
+      <EditArtworkForm name="Taj" description="fuck my ass" />
     </Grid>
   </Grid>
 );
 
-export default AddArtworkPage;
+export default EditArtworkPage;
