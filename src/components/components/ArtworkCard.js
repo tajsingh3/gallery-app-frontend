@@ -12,10 +12,10 @@ import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345
+    maxWidth: 500
   },
   media: {
-    height: 345,
+    height: 500,
     display: "block",
     margin: "auto"
   }
@@ -44,10 +44,16 @@ const ArtworkCard = ({ imageName }) => {
       </CardActionArea>
       <CardActions>
         <IconButton onClick={() => console.log("sending thumbs up")}>
-          <ThumbUpIcon /> 250
+          <ThumbUpIcon fontSize="small" color="primary" />{" "}
+          <Typography variant="body2" display="block" color="secondary">
+            250
+          </Typography>
         </IconButton>
         <IconButton>
-          <ThumbDownIcon /> 50
+          <ThumbDownIcon fontSize="small" color="primary" />{" "}
+          <Typography variant="body2" display="block" color="secondary">
+            50
+          </Typography>
         </IconButton>
       </CardActions>
     </Card>

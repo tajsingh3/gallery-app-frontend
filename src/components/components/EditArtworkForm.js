@@ -60,6 +60,7 @@ const EditArtworkForm = ({ name = "", description = "" }) => {
                 component={TextField}
                 label="Name"
                 fullWidth
+                margin="normal"
               />
               <Field
                 name="description"
@@ -69,6 +70,7 @@ const EditArtworkForm = ({ name = "", description = "" }) => {
                 component={TextField}
                 label="Description"
                 fullWidth
+                margin="normal"
               />
               <div>
                 <FormControlLabel
@@ -84,8 +86,8 @@ const EditArtworkForm = ({ name = "", description = "" }) => {
                 />
               </div>
               {addFileChecked && (
-                <div>
-                  <ImageIcon />
+                <div className="file-drop">
+                  <ImageIcon fontSize="large" />
                   <FileDrop handleChange={handleChange} />
                 </div>
               )}

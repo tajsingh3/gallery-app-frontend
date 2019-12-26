@@ -51,6 +51,7 @@ const AddArtworkForm = () => {
                 component={TextField}
                 label="Name"
                 fullWidth
+                margin="normal"
               />
               <Field
                 name="description"
@@ -60,9 +61,12 @@ const AddArtworkForm = () => {
                 component={TextField}
                 label="Description"
                 fullWidth
+                margin="normal"
               />
-              <ImageIcon />
-              <FileDrop handleChange={handleChange} />
+              <div className="file-drop">
+                <ImageIcon fontSize="large" />
+                <FileDrop handleChange={handleChange} />
+              </div>
               <Button
                 variant="outlined"
                 color="primary"
