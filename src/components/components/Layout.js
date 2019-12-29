@@ -46,8 +46,8 @@ const Layout = ({ children }) => {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" noWrap>
-            Clipped drawer
+          <Typography variant="h6" noWrap color="secondary">
+            Gallery App
           </Typography>
         </Toolbar>
       </AppBar>

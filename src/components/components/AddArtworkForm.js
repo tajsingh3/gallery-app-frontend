@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
@@ -11,6 +11,7 @@ import "typeface-roboto";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import FileDrop from "../components/FileDrop";
+import { sendArtworkData } from "../../api/artwork";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,8 +19,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+//fake user
+const userId = 1;
+
 const AddArtworkForm = () => {
   const classes = useStyles();
+
+  const [fileInput, setFileInput] = useState(null);
 
   return (
     <Formik
@@ -32,15 +38,17 @@ const AddArtworkForm = () => {
         artworkImage: Yup.mixed().required("artwork image is a required field")
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        let formData = new FormData();
+        formData.append("name", values.name);
+        formData.append("description", values.description);
+        formData.append("imageFile", fileInput);
+
+        sendArtworkData(userId, formData, setSubmitting);
       }}
     >
       {({ isSubmitting, handleChange }) => (
         <>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" gutterBottom color="secondary">
             Add Artwork
           </Typography>
           <Paper className={classes.root}>
@@ -65,7 +73,10 @@ const AddArtworkForm = () => {
               />
               <div className="file-drop">
                 <ImageIcon fontSize="large" />
-                <FileDrop handleChange={handleChange} />
+                <FileDrop
+                  handleChange={handleChange}
+                  setFileInput={setFileInput}
+                />
               </div>
               <Button
                 variant="outlined"

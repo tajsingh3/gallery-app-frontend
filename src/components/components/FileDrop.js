@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { ErrorMessage } from "formik";
 import Typography from "@material-ui/core/Typography";
@@ -31,7 +31,15 @@ const rejectStyle = {
   borderColor: "#ff1744"
 };
 
-const FileDrop = ({ handleChange }) => {
+const FileDrop = ({ handleChange, setFileInput }) => {
+  const onDrop = useCallback(
+    acceptedFiles => {
+      const file = acceptedFiles[0];
+      setFileInput(file);
+    },
+    [setFileInput]
+  );
+
   const {
     acceptedFiles,
     getRootProps,
@@ -39,7 +47,7 @@ const FileDrop = ({ handleChange }) => {
     isDragActive,
     isDragAccept,
     isDragReject
-  } = useDropzone({ accept: "image/*" });
+  } = useDropzone({ accept: "image/*", onDrop });
 
   const style = useMemo(
     () => ({

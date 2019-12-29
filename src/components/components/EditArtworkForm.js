@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
@@ -13,6 +13,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 import FileDrop from "../components/FileDrop";
+import { sendEditedArtworkData } from "../../api/artwork";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,11 +21,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const artworkId = 1;
+
 const EditArtworkForm = ({ name = "", description = "" }) => {
   const classes = useStyles();
   console.log("editing");
 
-  const [addFileChecked, setAddFileChecked] = React.useState(false);
+  const [addFileChecked, setAddFileChecked] = useState(false);
+  const [fileInput, setFileInput] = useState(null);
 
   const handleCheckboxChange = event => {
     setAddFileChecked(event.target.checked);
@@ -38,18 +42,19 @@ const EditArtworkForm = ({ name = "", description = "" }) => {
         description: Yup.string()
           .max(50)
           .required()
-        // artworkImage: Yup.mixed().required("artwork image is a required field")
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        let formData = new FormData();
+        formData.append("name", values.name);
+        formData.append("description", values.description);
+        formData.append("imageFile", fileInput);
+
+        sendEditedArtworkData(artworkId, formData, setSubmitting);
       }}
     >
       {({ isSubmitting, handleChange }) => (
         <>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" gutterBottom color="secondary">
             Edit Artwork
           </Typography>
           <Paper className={classes.root}>
@@ -88,7 +93,10 @@ const EditArtworkForm = ({ name = "", description = "" }) => {
               {addFileChecked && (
                 <div className="file-drop">
                   <ImageIcon fontSize="large" />
-                  <FileDrop handleChange={handleChange} />
+                  <FileDrop
+                    handleChange={handleChange}
+                    setFileInput={setFileInput}
+                  />
                 </div>
               )}
               <Button

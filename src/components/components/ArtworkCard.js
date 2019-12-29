@@ -12,7 +12,8 @@ import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 500
+    maxWidth: 500,
+    width: 500
   },
   media: {
     height: 500,
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ArtworkCard = ({ imageName }) => {
+const ArtworkCard = ({ artworkId, imageName, description }) => {
   const classes = useStyles();
 
   return (
@@ -37,19 +38,22 @@ const ArtworkCard = ({ imageName }) => {
             {imageName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton onClick={() => console.log("sending thumbs up")}>
+        <IconButton
+          onClick={() => console.log(`thumbs up artwork id: ${artworkId}`)}
+        >
           <ThumbUpIcon fontSize="small" color="primary" />{" "}
           <Typography variant="body2" display="block" color="secondary">
             250
           </Typography>
         </IconButton>
-        <IconButton>
+        <IconButton
+          onClick={() => console.log(`thumbs down artwork id: ${artworkId}`)}
+        >
           <ThumbDownIcon fontSize="small" color="primary" />{" "}
           <Typography variant="body2" display="block" color="secondary">
             50
