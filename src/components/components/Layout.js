@@ -15,6 +15,7 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import PeopleIcon from "@material-ui/icons/People";
 import HomeIcon from "@material-ui/icons/Home";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 import GalleryContext from "../../context/GalleryContext";
 
@@ -58,9 +59,24 @@ const Layout = ({ children }) => {
           <GalleryContext.Consumer>
             {context =>
               context.userId ? (
-                <Button color="secondary">Logout</Button>
+                <Button
+                  color="secondary"
+                  onClick={() => context.setUserId(null)}
+                >
+                  Logout
+                </Button>
               ) : (
-                <Button color="secondary">Login</Button>
+                <div>
+                  <Button
+                    color="secondary"
+                    onClick={() => context.setUserId(1)}
+                  >
+                    Login
+                  </Button>
+                  <Button color="secondary" variant="outlined">
+                    Sign up
+                  </Button>
+                </div>
               )
             }
           </GalleryContext.Consumer>
@@ -79,28 +95,56 @@ const Layout = ({ children }) => {
             <>
               <ListItem button key={"home"}>
                 <ListItemIcon>
-                  <HomeIcon />
+                  <HomeIcon color="secondary" />
                 </ListItemIcon>
-                <ListItemText primary={"Home"} />
+                <ListItemText primary={<Link to="/">Home</Link>} />
               </ListItem>
               <ListItem button key={"commart"}>
                 <ListItemIcon>
-                  <PeopleIcon />
+                  <PeopleIcon color="secondary" />
                 </ListItemIcon>
-                <ListItemText primary={"Community art"} />
+                <ListItemText
+                  primary={<Link to="/communityart">Community art</Link>}
+                />
               </ListItem>
-              <ListItem button key={"myart"}>
+              <GalleryContext.Consumer>
+                {context =>
+                  context.userId && (
+                    <>
+                      <ListItem button key={"myart"} component={Link}>
+                        <ListItemIcon>
+                          <PhotoLibraryIcon color="secondary" />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={<Link to="/myart">My art</Link>}
+                        />
+                      </ListItem>
+                      <ListItem button key={"addpic"}>
+                        <ListItemIcon>
+                          <AddAPhotoIcon color="secondary" />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={<Link to="/addartwork">Add artwork</Link>}
+                        />
+                      </ListItem>
+                    </>
+                  )
+                }
+              </GalleryContext.Consumer>
+              {/* <ListItem button key={"myart"} component={Link}>
                 <ListItemIcon>
-                  <PhotoLibraryIcon />
+                  <PhotoLibraryIcon color="secondary" />
                 </ListItemIcon>
-                <ListItemText primary={"My art"} />
+                <ListItemText primary={<Link to="/myart">My art</Link>} />
               </ListItem>
               <ListItem button key={"addpic"}>
                 <ListItemIcon>
-                  <AddAPhotoIcon />
+                  <AddAPhotoIcon color="secondary" />
                 </ListItemIcon>
-                <ListItemText primary={"Add artwork"} />
-              </ListItem>
+                <ListItemText
+                  primary={<Link to="/addartwork">Add artwork</Link>}
+                />
+              </ListItem> */}
             </>
           }
         </List>

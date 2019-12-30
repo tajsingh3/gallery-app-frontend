@@ -5,11 +5,12 @@ import { ThemeProvider } from "@material-ui/styles";
 // import AddArtworkPage from "./components/pages/AddArtworkPage";
 import Layout from "./components/components/Layout";
 // import GalleryPage from "./components/pages/GalleryPage";
-import CommunityArtPage from "./components/pages/CommunityArtPage";
+// import CommunityArtPage from "./components/pages/CommunityArtPage";
 // import MyArtPage from "./components/pages/MyArtPage";
 // import AddArtworkForm from "./components/components/AddArtworkForm";
-import EditArtworkPage from "./components/pages/EditArtworkPage";
+// import EditArtworkPage from "./components/pages/EditArtworkPage";
 import GalleryContext from "./context/GalleryContext";
+import AppRouter from "./routers/AppRouter";
 
 import "./styles/style.scss";
 
@@ -34,16 +35,17 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  let [userId, setUserId] = useState(1);
+  let [userId, setUserId] = useState(null);
 
   return (
     <GalleryContext.Provider value={{ userId, setUserId }}>
       <ThemeProvider theme={theme}>
         <Layout>
-          <CommunityArtPage />
+          {/* <CommunityArtPage /> */}
           {/* <MyArtPage /> */}
           {/* <EditArtworkPage /> */}
           {/* <AddArtworkPage /> */}
+          <AppRouter />
         </Layout>
       </ThemeProvider>
     </GalleryContext.Provider>

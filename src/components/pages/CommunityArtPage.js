@@ -4,7 +4,12 @@ import InfiniteGalleryScroll from "../components/InfiniteGalleryScroll";
 import { fetchCommunityArt } from "../../api/artwork";
 
 const CommunityArtPage = () => {
-  return <InfiniteGalleryScroll fetchImages={fetchCommunityArt} />;
+  return (
+    <div>
+      <h1>Community Art Page</h1>
+      <InfiniteGalleryScroll fetchImages={fetchCommunityArt} />
+    </div>
+  );
 };
 
 export default CommunityArtPage;

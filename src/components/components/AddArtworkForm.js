@@ -48,7 +48,7 @@ const AddArtworkForm = ({ userId }) => {
           <Typography variant="h4" gutterBottom color="secondary">
             Add Artwork
           </Typography>
-          <Paper className={classes.root}>
+          <Paper className={classes.root} elevation={24}>
             <Form>
               <Field
                 name="name"

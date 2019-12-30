@@ -26,7 +26,7 @@ const ArtworkCard = ({ artworkId, imageName, description }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} raised>
       <CardActionArea>
         <CardMedia
           className={classes.media}
