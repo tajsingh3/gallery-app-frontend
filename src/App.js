@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
 // import AddArtworkPage from "./components/pages/AddArtworkPage";
 import Layout from "./components/components/Layout";
 // import GalleryPage from "./components/pages/GalleryPage";
-// import CommunityArtPage from "./components/pages/CommunityArtPage";
+import CommunityArtPage from "./components/pages/CommunityArtPage";
 // import MyArtPage from "./components/pages/MyArtPage";
 // import AddArtworkForm from "./components/components/AddArtworkForm";
 import EditArtworkPage from "./components/pages/EditArtworkPage";
+import GalleryContext from "./context/GalleryContext";
 
 import "./styles/style.scss";
 
@@ -33,15 +34,19 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  let [userId, setUserId] = useState(1);
+
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        {/* <CommunityArtPage /> */}
-        {/* <MyArtPage /> */}
-        <EditArtworkPage />
-        {/* <AddArtworkPage /> */}
-      </Layout>
-    </ThemeProvider>
+    <GalleryContext.Provider value={{ userId, setUserId }}>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <CommunityArtPage />
+          {/* <MyArtPage /> */}
+          {/* <EditArtworkPage /> */}
+          {/* <AddArtworkPage /> */}
+        </Layout>
+      </ThemeProvider>
+    </GalleryContext.Provider>
   );
 }
 

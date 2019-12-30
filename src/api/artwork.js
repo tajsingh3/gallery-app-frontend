@@ -10,7 +10,7 @@ const fetchMyArt = async (page, userId) => {
       return response.data;
     }
   } catch (error) {
-    console.log(error);
+    console.log("redirect to error page");
   }
 };
 

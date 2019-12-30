@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import "typeface-roboto";
 
 import EditArtworkForm from "../components/EditArtworkForm";
+import GalleryContext from "../../context/GalleryContext";
 
 const EditArtworkPage = () => (
   <Grid container justify={"center"}>

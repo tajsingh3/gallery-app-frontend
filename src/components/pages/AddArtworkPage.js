@@ -11,11 +11,14 @@ import Grid from "@material-ui/core/Grid";
 import "typeface-roboto";
 
 import AddArtworkForm from "../components/AddArtworkForm";
+import GalleryContext from "../../context/GalleryContext";
 
 const AddArtworkPage = () => (
   <Grid container justify={"center"}>
     <Grid item xs={8}>
-      <AddArtworkForm />
+      <GalleryContext.Consumer>
+        {context => <AddArtworkForm userId={context.userId} />}
+      </GalleryContext.Consumer>
     </Grid>
   </Grid>
 );

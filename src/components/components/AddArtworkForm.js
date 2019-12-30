@@ -19,10 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-//fake user
-const userId = 1;
-
-const AddArtworkForm = () => {
+const AddArtworkForm = ({ userId }) => {
   const classes = useStyles();
 
   const [fileInput, setFileInput] = useState(null);

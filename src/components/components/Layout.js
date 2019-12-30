@@ -14,6 +14,9 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import PeopleIcon from "@material-ui/icons/People";
 import HomeIcon from "@material-ui/icons/Home";
+import Button from "@material-ui/core/Button";
+
+import GalleryContext from "../../context/GalleryContext";
 
 const drawerWidth = 240;
 
@@ -35,7 +38,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  menuButton: {
+    marginRight: theme.spacing(2)
+  }
 }));
 
 const Layout = ({ children }) => {
@@ -45,10 +51,19 @@ const Layout = ({ children }) => {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className="appbar">
           <Typography variant="h6" noWrap color="secondary">
             Gallery App
           </Typography>
+          <GalleryContext.Consumer>
+            {context =>
+              context.userId ? (
+                <Button color="secondary">Logout</Button>
+              ) : (
+                <Button color="secondary">Login</Button>
+              )
+            }
+          </GalleryContext.Consumer>
         </Toolbar>
       </AppBar>
       <Drawer
