@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 // import { Formik, Field, Form } from "formik";
 // import * as Yup from "yup";
 // import { TextField } from "formik-material-ui";
@@ -11,14 +12,28 @@ import Grid from "@material-ui/core/Grid";
 import "typeface-roboto";
 
 import EditArtworkForm from "../components/EditArtworkForm";
-import GalleryContext from "../../context/GalleryContext";
 
-const EditArtworkPage = () => (
-  <Grid container justify={"center"}>
-    <Grid item xs={8}>
-      <EditArtworkForm name="Taj" description="fuck my ass" />
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+const EditArtworkPage = () => {
+  const query = useQuery();
+  const name = query.get("name");
+  const description = query.get("description");
+  const artworkId = query.get("artworkId");
+
+  return (
+    <Grid container justify={"center"}>
+      <Grid item xs={8}>
+        <EditArtworkForm
+          name={name}
+          description={description}
+          artworkId={artworkId}
+        />
+      </Grid>
     </Grid>
-  </Grid>
-);
+  );
+};
 
 export default EditArtworkPage;

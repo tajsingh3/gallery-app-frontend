@@ -1,4 +1,5 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 import InfiniteGalleryScroll from "../components/InfiniteGalleryScroll";
 import { fetchCommunityArt } from "../../api/artwork";
@@ -6,8 +7,13 @@ import { fetchCommunityArt } from "../../api/artwork";
 const CommunityArtPage = () => {
   return (
     <div>
-      <h1>Community Art Page</h1>
-      <InfiniteGalleryScroll fetchImages={fetchCommunityArt} />
+      <Typography variant="h4" gutterBottom color="secondary">
+        Community Art
+      </Typography>
+      <InfiniteGalleryScroll
+        fetchImages={fetchCommunityArt}
+        isEditAndDeleteMenu={false}
+      />
     </div>
   );
 };

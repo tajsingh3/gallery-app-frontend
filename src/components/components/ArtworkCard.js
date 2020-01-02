@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -9,6 +11,10 @@ import Typography from "@material-ui/core/Typography";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+import { deletArtwork } from "../../api/artwork";
 
 const useStyles = makeStyles({
   card: {
@@ -22,15 +28,35 @@ const useStyles = makeStyles({
   }
 });
 
-const ArtworkCard = ({ artworkId, imageName, description }) => {
+const ArtworkCard = ({
+  artworkId,
+  imageName,
+  description,
+  imageUrl = "/images/super.jpg",
+  isEditAndDeleteMenu
+}) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleDelete = artworkId => {
+    deletArtwork(artworkId)
+      .then(isDeleteSuccess => {
+        if (isDeleteSuccess)
+          history.push(
+            `/deleteartwork?name=${imageName}&description=${description}`
+          );
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   return (
     <Card className={classes.card} raised>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/images/super.jpg"
+          image={`https://localhost:5001/${imageUrl}`}
           title="Superman"
         />
         <CardContent>
@@ -59,6 +85,22 @@ const ArtworkCard = ({ artworkId, imageName, description }) => {
             50
           </Typography>
         </IconButton>
+        {isEditAndDeleteMenu && (
+          <>
+            <IconButton
+              onClick={() =>
+                history.push(
+                  `/editartwork?artworkId=${artworkId}&name=${imageName}&description=${description}`
+                )
+              }
+            >
+              <EditIcon color="secondary" />
+            </IconButton>
+            <IconButton onClick={() => handleDelete(artworkId)}>
+              <DeleteIcon color="secondary" />
+            </IconButton>
+          </>
+        )}
       </CardActions>
     </Card>
   );

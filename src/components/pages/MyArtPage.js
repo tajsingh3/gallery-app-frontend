@@ -1,4 +1,5 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 import InfiniteGalleryScroll from "../components/InfiniteGalleryScroll";
 import { fetchMyArt } from "../../api/artwork";
@@ -6,14 +7,20 @@ import GalleryContext from "../../context/GalleryContext";
 
 const MyArtPage = () => {
   return (
-    <GalleryContext.Consumer>
-      {context => (
-        <InfiniteGalleryScroll
-          fetchImages={fetchMyArt}
-          userId={context.userId}
-        />
-      )}
-    </GalleryContext.Consumer>
+    <>
+      <Typography variant="h4" gutterBottom color="secondary">
+        My Art
+      </Typography>
+      <GalleryContext.Consumer>
+        {context => (
+          <InfiniteGalleryScroll
+            fetchImages={fetchMyArt}
+            userId={context.userId}
+            isEditAndDeleteMenu={true}
+          />
+        )}
+      </GalleryContext.Consumer>
+    </>
   );
 };
 

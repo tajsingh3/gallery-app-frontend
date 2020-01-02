@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
+
 import { TextField } from "formik-material-ui";
 import Typography from "@material-ui/core/Typography";
 import ImageIcon from "@material-ui/icons/Image";
@@ -21,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 const AddArtworkForm = ({ userId }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [fileInput, setFileInput] = useState(null);
 
@@ -40,7 +43,9 @@ const AddArtworkForm = ({ userId }) => {
         formData.append("description", values.description);
         formData.append("imageFile", fileInput);
 
-        sendArtworkData(userId, formData, setSubmitting);
+        sendArtworkData(userId, formData, setSubmitting).then(isSuccess => {
+          if (isSuccess) history.push("/myart");
+        });
       }}
     >
       {({ isSubmitting, handleChange }) => (

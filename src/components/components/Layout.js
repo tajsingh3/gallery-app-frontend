@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -47,6 +49,15 @@ const useStyles = makeStyles(theme => ({
 
 const Layout = ({ children }) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleLogin = () => {
+    history.push("/login");
+  };
+
+  const handleSignup = () => {
+    history.push("/signup");
+  };
 
   return (
     <div className={classes.root}>
@@ -67,13 +78,14 @@ const Layout = ({ children }) => {
                 </Button>
               ) : (
                 <div>
-                  <Button
-                    color="secondary"
-                    onClick={() => context.setUserId(1)}
-                  >
+                  <Button color="secondary" onClick={handleLogin}>
                     Login
                   </Button>
-                  <Button color="secondary" variant="outlined">
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    onClick={handleSignup}
+                  >
                     Sign up
                   </Button>
                 </div>

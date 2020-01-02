@@ -35,9 +35,11 @@ const sendArtworkData = async (userId, formData, setSubmitting) => {
       formData
     );
 
+    let isSuccess = false;
     if (response.status === 200) {
-      console.log("redirect to my art");
+      isSuccess = true;
     }
+    return isSuccess;
   } catch (error) {
     console.log(`redirect to ${error.response.status} error`);
   }
@@ -51,18 +53,39 @@ const sendEditedArtworkData = async (artworkId, formData, setSubmitting) => {
       formData
     );
 
+    let isEditSuccess = false;
     if (response.status === 200) {
-      console.log("redirect to my art");
+      isEditSuccess = true;
     }
+
+    return isEditSuccess;
   } catch (error) {
     console.log(`redirect to ${error.response.status} error`);
   }
   setSubmitting(false);
 };
 
+const deletArtwork = async artworkId => {
+  try {
+    const response = await axios.delete(
+      `https://localhost:5001/api/artwork/delete/${artworkId}`
+    );
+
+    let isDeleteSuccess = false;
+    if (response.status === 200) {
+      isDeleteSuccess = true;
+    }
+
+    return isDeleteSuccess;
+  } catch (error) {
+    console.log(`redirect to ${error.response.status} error`);
+  }
+};
+
 export {
   fetchMyArt,
   fetchCommunityArt,
   sendArtworkData,
-  sendEditedArtworkData
+  sendEditedArtworkData,
+  deletArtwork
 };
