@@ -18,7 +18,7 @@ const HomePage = () => {
       <Grid container justify="center">
         <Grid item>
           <Paper className={classes.root} elevation={24}>
-            <img src="/images/gallery.jpg" class="gallery-image" />
+            <img src="/images/gallery.jpg" alt="artwork" />
           </Paper>
         </Grid>
       </Grid>
