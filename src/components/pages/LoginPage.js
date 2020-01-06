@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 import GallerContext from "../../context/GalleryContext";
+import { sendLoginData } from "../../api/auth";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,8 +24,8 @@ const LoginPage = () => {
 
   const [didLogin, setDidLogin] = useState(false);
 
-  const handleLogin = setUserId => {
-    setUserId(1);
+  const handleLogin = (userId, setUserId) => {
+    setUserId(userId);
     setDidLogin(true);
   };
 
@@ -38,7 +39,68 @@ const LoginPage = () => {
         </Typography>
         <Grid item xs={8}>
           <Paper className={classes.root} elevation={24}>
-            <Formik
+            <GallerContext.Consumer>
+              {({ setUserId }) => (
+                <Formik
+                  initialValues={{
+                    email: "",
+                    password: ""
+                  }}
+                  validationSchema={Yup.object({
+                    email: Yup.string()
+                      .email("Invalid email")
+                      .required("Required"),
+                    password: Yup.string().required("Password required")
+                  })}
+                  onSubmit={values => {
+                    let data = {
+                      email: values.email,
+                      password: values.password
+                    };
+
+                    sendLoginData(data)
+                      .then(userId => {
+                        if (userId) {
+                          handleLogin(userId, setUserId);
+                        } else {
+                          console.log(
+                            "userId does not exist push to error page"
+                          );
+                        }
+                      })
+                      .catch(error => console.log(error));
+                  }}
+                >
+                  <Form>
+                    <Field
+                      name="email"
+                      type="text"
+                      component={TextField}
+                      label="Email"
+                      fullWidth
+                      margin="normal"
+                    />
+                    <Field
+                      name="password"
+                      type="password"
+                      component={TextField}
+                      label="Password"
+                      fullWidth
+                      margin="normal"
+                    />
+                    <Button
+                      type="submit"
+                      color="secondary"
+                      variant="contained"
+                      fullWidth
+                    >
+                      Login
+                    </Button>
+                  </Form>
+                </Formik>
+              )}
+            </GallerContext.Consumer>
+            {/* <Formik
               initialValues={{
                 email: "",
                 password: ""
@@ -49,8 +111,19 @@ const LoginPage = () => {
                   .required("Required"),
                 password: Yup.string().required("Password required")
               })}
-              onSubmit={() => {
-                console.log("submitted form");
+              onSubmit={values => {
+                let data = {
+                  email: values.email,
+                  password: values.password
+                };
+
+                sendLoginData(data)
+                  .then(userId => {
+                    if (userId) {
+                      handleLogin(userId);
+                    }
+                  })
+                  .catch(error => console.log(error));
               }}
             >
               <Form>
@@ -79,12 +152,12 @@ const LoginPage = () => {
                   Login
                 </Button>
               </Form>
-            </Formik>
+            </Formik> */}
           </Paper>
         </Grid>
       </Grid>
 
-      <GallerContext.Consumer>
+      {/* <GallerContext.Consumer>
         {({ setUserId }) => (
           <Button
             onClick={() => handleLogin(setUserId)}
@@ -94,7 +167,7 @@ const LoginPage = () => {
             fake Login
           </Button>
         )}
-      </GallerContext.Consumer>
+      </GallerContext.Consumer> */}
     </>
   );
 };

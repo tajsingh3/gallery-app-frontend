@@ -1,34 +1,32 @@
 import axios from "axios";
 
-// const token = null;
-
 const sendSignupData = async data => {
-  const response = await axios.post("someurl", data);
+  const response = await axios.post(
+    "https://localhost:5001/api/user/signup",
+    data
+  );
 
   let isSignupSuccess = false;
   if (response.status === 200) {
     isSignupSuccess = true;
     localStorage.setItem("token", response.data.token);
+    console.log(localStorage.getItem("token"));
   }
   return isSignupSuccess;
 };
 
 const sendLoginData = async data => {
-  const response = await axios.post("someurl", data);
+  const response = await axios.post(
+    "https://localhost:5001/api/user/login",
+    data
+  );
 
-  let isSignupSuccess = false;
+  let userId = null;
   if (response.status === 200) {
-    isSignupSuccess = true;
     localStorage.setItem("token", response.data.token);
+    userId = response.data.userName;
   }
-  return isSignupSuccess;
-
-  //   const token = localStorage.getItem("token");
-  //   const response = await axios.post("someurl", data, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   });
+  return userId;
 };
 
 export { sendSignupData, sendLoginData };

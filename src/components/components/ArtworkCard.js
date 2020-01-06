@@ -94,10 +94,10 @@ const ArtworkCard = ({
                 )
               }
             >
-              <EditIcon color="secondary" />
+              <EditIcon color="primary" />
             </IconButton>
             <IconButton onClick={() => handleDelete(artworkId)}>
-              <DeleteIcon color="secondary" />
+              <DeleteIcon color="primary" />
             </IconButton>
           </>
         )}

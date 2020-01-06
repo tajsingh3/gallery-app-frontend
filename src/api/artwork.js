@@ -1,9 +1,12 @@
 import axios from "axios";
 
+let token = localStorage.getItem("token");
+
 const fetchMyArt = async (page, userId) => {
   try {
     const response = await axios.get(
-      `https://localhost:5001/api/artwork/${userId}?page=${page}&itemsperpage=5`
+      `https://localhost:5001/api/artwork/${userId}?page=${page}&itemsperpage=5`,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     if (response.status === 200) {
@@ -32,7 +35,8 @@ const sendArtworkData = async (userId, formData, setSubmitting) => {
   try {
     const response = await axios.post(
       `https://localhost:5001/api/artwork/${userId}`,
-      formData
+      formData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     let isSuccess = false;
@@ -50,7 +54,8 @@ const sendEditedArtworkData = async (artworkId, formData, setSubmitting) => {
   try {
     const response = await axios.put(
       `https://localhost:5001/api/artwork/update/${artworkId}`,
-      formData
+      formData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     let isEditSuccess = false;
@@ -68,7 +73,8 @@ const sendEditedArtworkData = async (artworkId, formData, setSubmitting) => {
 const deletArtwork = async artworkId => {
   try {
     const response = await axios.delete(
-      `https://localhost:5001/api/artwork/delete/${artworkId}`
+      `https://localhost:5001/api/artwork/delete/${artworkId}`,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     let isDeleteSuccess = false;

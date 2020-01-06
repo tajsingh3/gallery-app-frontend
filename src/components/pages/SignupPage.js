@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 
 import { TextField } from "formik-material-ui";
 import { Button } from "@material-ui/core";
@@ -8,6 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+
+import { sendSignupData } from "../../api/auth";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 const SignupPage = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <Grid container justify="center" alignItems="center" direction="column">
@@ -41,8 +45,18 @@ const SignupPage = () => {
                 "Passwords must match"
               )
             })}
-            onSubmit={() => {
-              console.log("submitted form");
+            onSubmit={values => {
+              let data = {
+                email: values.email,
+                password: values.password,
+                confirmPassword: values.passwordConfirmation
+              };
+
+              sendSignupData(data)
+                .then(isSignupSuccess => {
+                  if (isSignupSuccess) history.push("/login");
+                })
+                .catch(error => console.log(error));
             }}
           >
             <Form>

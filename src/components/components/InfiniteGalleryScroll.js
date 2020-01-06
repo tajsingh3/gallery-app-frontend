@@ -5,8 +5,6 @@ import Typography from "@material-ui/core/Typography";
 
 import ArtworkCard from "./ArtworkCard";
 
-// const userId = 1;
-
 const InfiniteGalleryScroll = ({
   fetchImages,
   userId,
