@@ -22,3 +22,6 @@
 <img width="1280" alt="Screen Shot 2020-01-08 at 5 56 35 PM" src="https://user-images.githubusercontent.com/33178924/72023277-52670380-3240-11ea-8417-9c1b5daca018.png">
 
 
+<img width="1280" alt="Screen Shot 2020-01-08 at 5 58 56 PM" src="https://user-images.githubusercontent.com/33178924/72023384-9c4fe980-3240-11ea-9133-9d43bf416f10.png">
+
+
