@@ -19,4 +19,6 @@
 <img width="1280" alt="Screen Shot 2020-01-08 at 5 54 20 PM" src="https://user-images.githubusercontent.com/33178924/72023099-f56b4d80-323f-11ea-9617-741b6d99f79a.png">
 
 
+<img width="1280" alt="Screen Shot 2020-01-08 at 5 56 35 PM" src="https://user-images.githubusercontent.com/33178924/72023277-52670380-3240-11ea-8417-9c1b5daca018.png">
+
 
