@@ -7,3 +7,6 @@
 <img width="1280" alt="Screen Shot 2020-01-08 at 5 40 19 PM" src="https://user-images.githubusercontent.com/33178924/72022264-ff8c4c80-323d-11ea-9933-dcce42eb29ba.png">
 
 
+<img width="1280" alt="Screen Shot 2020-01-08 at 5 42 46 PM" src="https://user-images.githubusercontent.com/33178924/72022395-54c85e00-323e-11ea-8227-12f8efb4c13d.png">
+
+
