@@ -23,6 +23,7 @@ const LoginPage = () => {
   const classes = useStyles();
 
   const [didLogin, setDidLogin] = useState(false);
+  const [showLogginError, setShowLoginError] = useState(false);
 
   const handleLogin = (userId, setUserId) => {
     setUserId(userId);
@@ -52,7 +53,7 @@ const LoginPage = () => {
                       .required("Required"),
                     password: Yup.string().required("Password required")
                   })}
-                  onSubmit={values => {
+                  onSubmit={(values, { setSubmitting }) => {
                     let data = {
                       email: values.email,
                       password: values.password
@@ -63,12 +64,18 @@ const LoginPage = () => {
                         if (userId) {
                           handleLogin(userId, setUserId);
                         } else {
+                          setShowLoginError(true);
+                          setSubmitting(false);
                           console.log(
                             "userId does not exist push to error page"
                           );
                         }
                       })
-                      .catch(error => console.log(error));
+                      .catch(error => {
+                        setShowLoginError(true);
+                        setSubmitting(false);
+                        console.log(error);
+                      });
                   }}
                 >
                   <Form>
@@ -100,74 +107,19 @@ const LoginPage = () => {
                 </Formik>
               )}
             </GallerContext.Consumer>
-            {/* <Formik
-              initialValues={{
-                email: "",
-                password: ""
-              }}
-              validationSchema={Yup.object({
-                email: Yup.string()
-                  .email("Invalid email")
-                  .required("Required"),
-                password: Yup.string().required("Password required")
-              })}
-              onSubmit={values => {
-                let data = {
-                  email: values.email,
-                  password: values.password
-                };
-
-                sendLoginData(data)
-                  .then(userId => {
-                    if (userId) {
-                      handleLogin(userId);
-                    }
-                  })
-                  .catch(error => console.log(error));
-              }}
-            >
-              <Form>
-                <Field
-                  name="email"
-                  type="text"
-                  component={TextField}
-                  label="Email"
-                  fullWidth
-                  margin="normal"
-                />
-                <Field
-                  name="password"
-                  type="password"
-                  component={TextField}
-                  label="Password"
-                  fullWidth
-                  margin="normal"
-                />
-                <Button
-                  type="submit"
-                  color="secondary"
-                  variant="contained"
-                  fullWidth
-                >
-                  Login
-                </Button>
-              </Form>
-            </Formik> */}
+            {showLogginError && (
+              <Typography
+                variant="h5"
+                gutterBottom
+                color="error"
+                align="center"
+              >
+                Login failed
+              </Typography>
+            )}
           </Paper>
         </Grid>
       </Grid>
-
-      {/* <GallerContext.Consumer>
-        {({ setUserId }) => (
-          <Button
-            onClick={() => handleLogin(setUserId)}
-            variant="contained"
-            color="secondary"
-          >
-            fake Login
-          </Button>
-        )}
-      </GallerContext.Consumer> */}
     </>
   );
 };

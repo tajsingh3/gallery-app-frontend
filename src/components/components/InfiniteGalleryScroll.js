@@ -73,7 +73,7 @@ const InfiniteGalleryScroll = ({
         justify="center"
       >
         {imagesDoNotExistMessage ||
-          images.map((image, index) => (
+          images.map(image => (
             <Grid key={image.id} item>
               <ArtworkCard
                 artworkId={image.id}

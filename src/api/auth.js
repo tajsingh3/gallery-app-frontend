@@ -7,10 +7,8 @@ const sendSignupData = async data => {
   );
 
   let isSignupSuccess = false;
-  if (response.status === 200) {
+  if (response.status === 200 && response.data.accountCreated === true) {
     isSignupSuccess = true;
-    localStorage.setItem("token", response.data.token);
-    console.log(localStorage.getItem("token"));
   }
   return isSignupSuccess;
 };

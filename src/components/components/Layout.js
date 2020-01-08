@@ -59,6 +59,11 @@ const Layout = ({ children }) => {
     history.push("/signup");
   };
 
+  const handleLogout = setUserId => {
+    localStorage.removeItem("token");
+    setUserId(null);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -72,7 +77,7 @@ const Layout = ({ children }) => {
               context.userId ? (
                 <Button
                   color="secondary"
-                  onClick={() => context.setUserId(null)}
+                  onClick={() => handleLogout(context.setUserId)}
                 >
                   Logout
                 </Button>
